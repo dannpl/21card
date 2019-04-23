@@ -1,0 +1,14 @@
+<div class="center mg-bt">
+  <img class="logo" src="./../../assets/logo.png" alt="CardTrick">
+</div>
+
+<div class="center">
+  <button class="btn" mat-raised-button color="warn" *ngIf="isStep0" (click)="step0()">PLAY</button>
+  <img *ngIf="isStep1" src="./../../assets/magic.png" width="18%">
+</div>
+
+<div *ngIf="!stop">
+  <div class="deck center" *ngFor="let deck of decks; let i = index" (click)="step2(i)">
+    <img class='card my-animation' *ngFor="let item of deck" [src]="item.image">
+  </div>
+</div>
