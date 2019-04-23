@@ -24,7 +24,7 @@ export class HomeComponent implements OnInit {
     this.newDeck();
     this.isStep0 = false;
     this.isStep1 = true;
-    const snackBarRef  = this.snackBar.open('Hi, Do you want to see a magic?', 'Play');
+    const snackBarRef = this.snackBar.open('Hi, Do you want to see a magic?', 'Play');
     snackBarRef.onAction().subscribe(() => {
       this.step1();
     });
@@ -34,16 +34,19 @@ export class HomeComponent implements OnInit {
     this.isStep1 = false;
     this.isStep2 = true;
     this.stop = false;
-    const snackBarRef  = this.snackBar.open('Choose a card and click on the line you are on', 'OK');
+    const snackBarRef = this.snackBar.open('Choose a card and click on the line you are on', 'OK');
     snackBarRef.onAction().subscribe(() => {
-      this.step2();
+      this.isStep2 = false;
+      this.isStep3 = true;
     });
   }
 
   step2(index?) {
     this.isStep2 = false;
     this.isStep3 = true;
-    console.log(index)
+    const snackBarRef = this.snackBar.open(`Nice, I saw that your letter is on the line ${index + 1} `, 'OK');
+    snackBarRef.onAction().subscribe(() => {
+    });
   }
 
   newDeck() {
