@@ -7,8 +7,10 @@
   <img *ngIf="isStep1" src="./../../assets/magic.png" width="18%">
 </div>
 
-<div *ngIf="!stop">
-  <div class="deck center" *ngFor="let deck of decks; let i = index" (click)="step2(i)">
-    <img class='card my-animation' *ngFor="let item of deck" [src]="item.image">
+<div >
+  <div class="deck center" id='deck{{i}}' *ngFor="let deck of decks; let i = index" (click)="step2(i,'deck'+i)">
+    <img class='card my-animation' *ngFor="let item of deck; let i = index" [src]="item.image">
   </div>
 </div>
+
+<app-progress *ngIf="load"></app-progress>

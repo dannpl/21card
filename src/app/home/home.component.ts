@@ -14,6 +14,8 @@ export class HomeComponent implements OnInit {
   isStep1 = false;
   isStep2 = false;
   isStep3 = false;
+  flag = false
+  load = false
   constructor(private homeService: HomeService,
               private snackBar: MatSnackBar) { }
 
@@ -21,11 +23,9 @@ export class HomeComponent implements OnInit {
   }
 
   step0() {
-    this.newDeck();
     this.isStep0 = false;
     this.isStep1 = true;
-    const snackBarRef = this.snackBar.open('Hi, Do you want to see a magic?', 'Play');
-    snackBarRef.onAction().subscribe(() => {
+    this.snackbarMessage('Hi, Do you want to see a magic?', 'Play').onAction().subscribe(() => {
       this.step1();
     });
   }
@@ -34,19 +34,76 @@ export class HomeComponent implements OnInit {
     this.isStep1 = false;
     this.isStep2 = true;
     this.stop = false;
-    const snackBarRef = this.snackBar.open('Choose a card and click on the line you are on', 'OK');
-    snackBarRef.onAction().subscribe(() => {
+    this.load = true
+    this.newDeck();
+    this.snackbarMessage('Choose a card and click on the line you are on', 'OK').onAction().subscribe(() => {
       this.isStep2 = false;
       this.isStep3 = true;
     });
   }
 
-  step2(index?) {
+  step2(index?, deck?) {
     this.isStep2 = false;
     this.isStep3 = true;
-    const snackBarRef = this.snackBar.open(`Nice, I saw that your letter is on the line ${index + 1} `, 'OK');
-    snackBarRef.onAction().subscribe(() => {
-    });
+    if (!this.flag) {
+      this.flag = true
+      this.addClassDeck('block')
+      document.getElementById(`${deck}`).classList.add('active')
+      this.snackbarMessage(`Nice, I saw that your letter is on the line ${index + 1}, OK?`, 'OK').onAction().subscribe(() => {
+        this.load = true
+        this.mixCards(index)
+      });
+    }
+  }
+
+  mixCards(index) {
+    console.log(this.decks)
+    let array0 = []
+    let array1 = []
+    let array2 = []
+    if (index == 0) { 
+      array0 = this.decks[1]
+      array1 = this.decks[0]
+      array2 = this.decks[2]
+      this.pushCards(array0,array1,array2)
+    } else
+    if (index == 1) {
+      array0 = this.decks[0]
+      array1 = this.decks[1]
+      array2 = this.decks[2]
+      this.pushCards(array0,array1,array2)
+    } else 
+    if (index == 2) {
+      array0 = this.decks[0]
+      array1 = this.decks[2]
+      array2 = this.decks[1]
+      this.pushCards(array0,array1,array2)
+    }
+    this.snackbarMessage('Embaralhando as cartas', 'OK')
+  }
+
+  pushCards(array0,array1,array2) {
+    let arrSec = []
+    array0.forEach(element => {
+      arrSec.push(element)
+    })
+    array1.forEach(element => {
+      arrSec.push(element)
+    })
+    array2.forEach(element => {
+      arrSec.push(element)
+    })
+    console.log(arrSec)
+  }
+
+  snackbarMessage(message: string, action: string) {
+    return this.snackBar.open(message, action);
+  }
+
+  addClassDeck(nameClass: string) {
+    for (let i = 0; i < 3; i++) {
+      document.getElementById(`deck${i}`).classList.add(`${nameClass}`)
+    }
   }
 
   newDeck() {
@@ -69,6 +126,7 @@ export class HomeComponent implements OnInit {
           j++;
         }
       }
+      this.load = false
     });
   }
 }

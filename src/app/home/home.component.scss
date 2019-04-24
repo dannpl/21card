@@ -17,8 +17,12 @@
   padding-left: 50px;
 }
 
-.deck:hover {
-  padding: 10px 10px 10px 60px;
+.active{
+  padding: 20px 20px 20px 70px;
+}
+
+.block {
+  cursor: not-allowed;
 }
 
 .btn {
@@ -29,6 +33,9 @@
   text-align: center;
 }
 
+.card-just {
+  position: fixed;
+}
 @keyframes MyAnimation {
     0% {
       padding-left: 50px;

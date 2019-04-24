@@ -1,0 +1,17 @@
+.loader-spinner-overlay{
+  position: absolute;
+  width:100%;
+  top: 0;
+  left: 0;
+  opacity: 1;
+  height: 100%;
+  background: rgba(66, 66, 66, 0.6901960784313725);
+  .spinner{
+    position:absolute;
+    left:50%;
+    top:50%;
+    margin-left:-50px;
+    margin-top:-50px;
+  }
+}
+  
