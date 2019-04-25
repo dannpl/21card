@@ -3,14 +3,13 @@
 </div>
 
 <div class="center">
-  <button class="btn btn-play" mat-raised-button color="warn" *ngIf="isStep0" (click)="step1()">PLAY</button>
-  <button class="btn btn-about" mat-raised-button color="primary" *ngIf="isStep0" (click)="snackbarMessage('The magic is simple, you just will memorize a letter and tell me which column it is, the rest I do! ;)', 'X')">ABOUT GAME</button>
-  <img class="magic" *ngIf="isStep1" src="./../../assets/magic.png" width="20%">
+  <button class="btn btn-play" mat-raised-button color="warn" *ngIf="isStep1" (click)="step1()">PLAY</button>
+  <button class="btn btn-about" mat-raised-button color="primary" *ngIf="isStep1" (click)="snackbarMessage('The magic is simple, you just will memorize a letter and tell me which column it is, the rest I do! ;)', 'X')">ABOUT GAME</button>
 </div>
 
 <div class="center" *ngIf="!stop">
   <p>STEP {{pass + 1}} - Click on the line that your letter appears</p>
-  <div class="deck center" id='deck{{i}}' *ngFor="let deck of decks; let i = index" (click)="step3(i,'deck'+i)">
+  <div class="deck center" id='deck{{i}}' *ngFor="let deck of decks; let i = index" (click)="step2(i,'deck'+i)">
     <img class='card my-animation' *ngFor="let item of deck; let i = index" [src]="item.image">
   </div>
 </div>

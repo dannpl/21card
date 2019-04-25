@@ -1,6 +1,8 @@
 import { HomeService } from './home.service';
 import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material';
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
+import { DialogCardComponent } from './../dialog-card/dialog-card.component';
 
 @Component({
   selector: 'app-home',
@@ -10,79 +12,78 @@ import { MatSnackBar } from '@angular/material';
 export class HomeComponent implements OnInit {
   decks = [];
   stop: boolean;
-  isStep0: boolean;
   isStep1: boolean;
   isStep2: boolean;
   isStep3: boolean;
   flag: boolean;
   load: boolean;
   pass: number;
+  type: string;
 
   constructor(private homeService: HomeService,
-              private snackBar: MatSnackBar) { }
+              private snackBar: MatSnackBar,
+              public dialog: MatDialog) { }
 
   ngOnInit() {
     this.initVars();
+    this.newDeck();
   }
 
   initVars() {
     this.stop = true;
-    this.isStep0 = true;
-    this.isStep1 = false;
+    this.isStep1 = true;
     this.isStep2 = false;
     this.isStep3 = false;
     this.flag = false;
     this.load = false;
     this.pass = 0;
+    this.type = 'reset';
   }
 
   step1() {
-    this.isStep0 = false;
-    this.isStep1 = true;
-    this.snackbarMessage('Hi, Do you want to see a magic?', 'Play').onAction().subscribe(() => {
-      this.step2();
-    });
-  }
-
-  step2() {
     this.isStep1 = false;
     this.isStep2 = true;
     this.stop = false;
-    this.load = true;
-    this.newDeck();
-    this.snackbarMessage('Choose a card and click on the line you are on', 'OK').onAction().subscribe(() => {
+    this.snackbarMessage('Choose a card and click on the line it is on', 'OK').onAction().subscribe(() => {
       this.isStep2 = false;
       this.isStep3 = true;
     });
   }
 
-  step3(index?, deck?) {
+  step2(index?, deck?) {
     this.isStep2 = false;
     this.isStep3 = true;
-    this.flag = true;
-    this.load = true;
-    this.snackbarMessage(`Nice, I saw that your letter is on the line ${index + 1}, OK?`, 'OK').onAction().subscribe(() => {
-      if (this.pass === 0) {
-        this.snackbarMessage("Show, now let's shuffle the cards 2 times.", 'OK').onAction().subscribe(() => {
-          this.pass = 1;
-          this.mixCards(index);
-        });
-      } else
-      if (this.pass === 1) {
-        this.snackbarMessage("Second time now, let's go to the last one!", 'OK').onAction().subscribe(() => {
-          this.pass = 2;
-          this.mixCards(index);
-        });
-      } else
-      if (this.pass === 2) {
-        this.snackbarMessage('Third time, and your letter is...', 'Show My letter').onAction().subscribe(() => {
-          this.pass = 3;
-          this.mixCards(index);
-          this.showCard();
-          this.stop = true;
-        });
-      }
-    });
+    if (!this.flag) {
+      this.flag = true;
+      document.getElementById(`${deck}`).classList.add('active');
+      this.addClassDeck('block');
+      this.snackbarMessage(`Nice, I saw that your letter is on the line ${index + 1}, OK?`, 'OK').onAction().subscribe(() => {
+        this.load = true;
+        if (this.pass === 0) {
+          this.snackbarMessage(`Show, now let's shuffle the cards 2 times.`, 'Next').onAction().subscribe(() => {
+            this.pass = 1;
+            this.flag = false;
+            this.mixCards(index);
+          });
+        } else
+        if (this.pass === 1) {
+          this.snackbarMessage(`Second time now, let's go to the last one!`, 'Next').onAction().subscribe(() => {
+            this.pass = 2;
+            this.flag = false;
+            this.mixCards(index);
+          });
+        } else
+        if (this.pass === 2) {
+          this.snackbarMessage('Third time, and your letter is...', 'Show My letter').onAction().subscribe(() => {
+            this.pass = 3;
+            this.flag = false;
+            this.mixCards(index);
+            this.showCard();
+            this.stop = true;
+          });
+        }
+      });
+    }
   }
 
   mixCards(index) {
@@ -144,7 +145,21 @@ export class HomeComponent implements OnInit {
   }
 
   showCard() {
-    console.log(this.decks[1][3]);
+    const dialogRef = this.dialog.open(DialogCardComponent, {
+      data: {card: this.decks[1][3]}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result === undefined || result === 'reset') {
+        this.isStep1 = true;
+        this.isStep3 = false;
+        this.pass = 0;
+        this.newDeck();
+      } else {
+        this.stop = false;
+        this.pass = 0;
+      }
+    });
   }
 
   snackbarMessage(message: string, action: string) {

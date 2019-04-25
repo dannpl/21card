@@ -7,11 +7,16 @@ import { MaterialModule } from './material/material.module';
 import { HomeComponent } from './home/home.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ProgressComponent } from './utils/progress/progress.component';
+import { DialogCardComponent } from './dialog-card/dialog-card.component';
 @NgModule({
+  entryComponents: [
+    DialogCardComponent
+  ],
   declarations: [
     AppComponent,
     HomeComponent,
-    ProgressComponent
+    ProgressComponent,
+    DialogCardComponent
   ],
   imports: [
     BrowserModule,
