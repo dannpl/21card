@@ -2,19 +2,24 @@
   width: 40%;
 }
 
-.mg-bt {
-  margin-bottom: 40px;
+p {
+  color: white;
+  font-weight: bold;
+  font-size: 26px;
 }
 
-.card {
-  width: 6%;
-  margin-left: -50px;
+.mg-bt {
+  margin-bottom: 40px;
 }
 
 .deck {
   cursor: pointer;
   margin-top: 2%;
   padding-left: 50px;
+  .card {
+    width: 6%;
+    margin-left: -50px;
+  }
 }
 
 .active{
@@ -33,9 +38,6 @@
   text-align: center;
 }
 
-.card-just {
-  position: fixed;
-}
 @keyframes MyAnimation {
     0% {
       padding-left: 50px;
