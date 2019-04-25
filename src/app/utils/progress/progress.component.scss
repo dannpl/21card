@@ -1,0 +1,25 @@
+.loader-spinner-overlay{
+  position: absolute;
+  width:100%;
+  top: 0;
+  left: 0;
+  opacity: 1;
+  height: 100%;
+  background: rgba(66, 66, 66, 0.6901960784313725);
+  .img {
+    position:absolute;
+    width: 100px;
+    top: 50%;
+    left: 50%;
+    margin-left: -50px;
+    opacity: 0;
+    margin-top: -50px;
+    animation: anima 1s ease infinite;
+  }
+}
+  
+@keyframes anima {
+  to {
+      opacity: 1;
+  }
+}

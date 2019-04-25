@@ -1,2 +1,17 @@
 /* You can add global styles to this file, and also import other style files */
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+body {
+  background:
+    linear-gradient(
+       rgba(0, 0, 0, 0.802),rgba(0, 0, 0, 0.728)
+    ),
+    url('./assets/bg.jpg') no-repeat;
+    background-attachment: fixed;
+}
+
+
+@media screen and (max-width: 1024px) {
+  body {
+  }
+}
