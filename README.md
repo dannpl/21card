@@ -17,6 +17,16 @@ Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app w
 
 [https://dannpl-cardtrick.herokuapp.com/](https://dannpl-cardtrick.herokuapp.com/)
 
+## Features
+- [x] UI/UX
+- [x] Responsive
+- [x] Requisition API
+- [x] Shuffle Cards
+- [x] Show selected letter
+- [x] Use the same deck several times
+- [x] Reset Trick
+- [] More Animations
+
 ## UI
 
 <img src="https://user-images.githubusercontent.com/37663993/56715328-c0e54f00-670d-11e9-8992-4ea278cd4769.jpg">
