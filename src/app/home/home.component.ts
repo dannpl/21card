@@ -62,21 +62,20 @@ export class HomeComponent implements OnInit {
     this.flag = true;
     this.load = true;
     this.snackbarMessage(`Nice, I saw that your letter is on the line ${index + 1}, OK?`, 'OK').onAction().subscribe(() => {
-      console.log('d')
       if (this.pass === 0) {
-        this.snackbarMessage('Show , agora vamos Embaralhar as cartas 2 vezes , la vai a 1ª', 'OK').onAction().subscribe(() => {
+        this.snackbarMessage("Show, now let's shuffle the cards 2 times.", 'OK').onAction().subscribe(() => {
           this.pass = 1;
           this.mixCards(index);
         });
       } else
       if (this.pass === 1) {
-        this.snackbarMessage('2º vez agora hein falta so mais uma, jaja falo sua carta', 'OK').onAction().subscribe(() => {
+        this.snackbarMessage("Second time now, let's go to the last one!", 'OK').onAction().subscribe(() => {
           this.pass = 2;
           this.mixCards(index);
         });
       } else
       if (this.pass === 2) {
-        this.snackbarMessage('3ª vez , Hummmmm, pelo que eu vi sua carta é', 'OK').onAction().subscribe(() => {
+        this.snackbarMessage('Third time, and your letter is...', 'Show My letter').onAction().subscribe(() => {
           this.pass = 3;
           this.mixCards(index);
           this.showCard();
