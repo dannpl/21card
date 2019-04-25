@@ -18,9 +18,7 @@ Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app w
 
 ## Deploy
 
-```sh
 *[https://dannpl-cardtrick.herokuapp.com/](https://dannpl-cardtrick.herokuapp.com/)
-```
 
 ## UI
 
