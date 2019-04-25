@@ -8,10 +8,15 @@ body {
     ),
     url('./assets/bg.jpg') no-repeat;
     background-attachment: fixed;
+
+  @media screen and (min-width: 1900px) {
+    background-size: 150%;
+  }
+  @media screen and (max-width: 768px) {
+    background-position: -200px;
+  }
 }
 
-
-@media screen and (max-width: 1024px) {
-  body {
-  }
+body {
+  font-family: 'Josefin Sans', sans-serif!important;
 }
