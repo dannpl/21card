@@ -1,9 +1,6 @@
 # CardTrick
 > Trick of the 21 cards
 
-[![NPM Version][npm-image]][npm-url
-[![Downloads Stats][npm-downloads]][npm-url]
-
 ## Installation
 
 npm:
