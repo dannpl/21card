@@ -10,9 +10,9 @@
     width: 85px;
     margin-left: -30px;
     @media screen and(max-width: 600px) {
-      width: 80px;
+      width: 60px;
       display: table-column;
-      margin-top: -70px;
+      margin-top: -50px;
     }
     @media screen and(min-width: 1440px) {
       width: 100px;
@@ -66,20 +66,37 @@
 }
 
 .active{
-  padding: 20px 20px 20px 70px;
+  background-color: rgba(19, 231, 19, 0.149);
+  width: 100;
+  padding: 5px 0px 0px 60px;
+  @media screen and(max-width: 600px) {
+    background-color: rgba(0, 0, 0, 0);
+    padding: 0px 0px 20px 50px;
+  }
 }
 
 .block {
   cursor: not-allowed;
 }
 
-@keyframes MyAnimation {
+@keyframes MyAnimation {s
     0% {
       padding-left: 50px;
     }
     100% {
       padding-left: 0px;
     } 
+  }
+
+  @media screen and(max-width: 600px) {
+    @keyframes MyAnimation {
+      0% {
+        padding-top: 50px;
+      }
+      100% {
+        padding-top: 0px;
+      } 
+    }
   }
   
   .my-animation {
