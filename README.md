@@ -25,7 +25,7 @@ Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app w
 - [x] Show selected letter
 - [x] Use the same deck several times
 - [x] Reset Trick
-- [] More Animations
+- [ ] More Animations
 
 ## UI
 
